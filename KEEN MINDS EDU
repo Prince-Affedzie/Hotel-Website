@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Keen Mind Educational Hub </title>
+  <meta name="description" content="Keen Mind Educational Hub — interactive educational services in Tema. Courses, tutoring, consulting, and community learning." />
+  <style>
+    /* ---------- base variables (will be replaced by JS-generated theme) ---------- */
+    :root{
+      --accent: #b71c1c;
+      --accent-2: #ff5252;
+      --bg-layer-1: linear-gradient(135deg,#fff5f5 0%, #ffecec 100%);
+      --bg-layer-2: none;
+      --card-bg: rgba(255,255,255,0.92);
+      --glass: rgba(255,255,255,0.7);
+      --text: #2b0a0a;
+      --muted: #6b2b2b;
+      --max-width: 1100px;
+      --radius: 12px;
+      --shadow: 0 10px 30px rgba(11,7,7,0.08);
+      --gap: 18px;
+      --logo-size: 60px;
+      --ui-font: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    /* ---------- reset ---------- */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--ui-font);
+      color:var(--text);
+      background: var(--bg-layer-2), var(--bg-layer-1);
+      background-attachment: fixed;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    /* ---------- layout ---------- */
+    .wrap{max-width:var(--max-width);margin:36px auto;padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:var(--logo-size);height:var(--logo-size);border-radius:12px;
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:800;
+      font-size:20px;box-shadow:var(--shadow);background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      flex-shrink:0;
+    }
+    .brand h1{margin:0;font-size:1.05rem}
+    .brand .sub{font-size:0.85rem;color:var(--muted)}
+
+    nav{display:flex;gap:10px;align-items:center}
+    nav a{padding:8px 12px;border-radius:10px;text-decoration:none;color:var(--text);font-weight:600}
+    nav a.cta{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;box-shadow:0 6px 18px rgba(0,0,0,0.12)}
+
+    /* ---------- hero ---------- */
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:22px;align-items:start;margin-bottom:22px}
+    .hero-card{background:var(--card-bg);padding:22px;border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero h2{margin:8px 0 6px 0;font-size:1.6rem}
+    .meta{color:var(--muted);font-weight:600}
+
+    /* ---------- services ---------- */
+    .card{background:var(--card-bg);padding:16px;border-radius:var(--radius);box-shadow:var(--shadow)}
+    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:12px}
+    .service{padding:14px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.9));min-height:110px;display:flex;flex-direction:column;justify-content:space-between}
+    .service h3{margin:0;font-size:1.05rem}
+    .service p{margin:6px 0 0 0;color:var(--muted);font-size:0.95rem}
+
+    /* ---------- clients / carousel ---------- */
+    .clients{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+    .carousel{position:relative;overflow:hidden;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.7),rgba(255,255,255,0.6));padding:10px}
+    .carousel-track{display:flex;gap:12px;transition:transform 450ms cubic-bezier(.22,.9,.3,1)}
+    .client{min-width:120px;height:64px;border-radius:8px;background:rgba(0,0,0,0.04);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--muted);box-shadow:inset 0 -4px 10px rgba(0,0,0,0.03)}
+    .carousel-controls{display:flex;gap:8px;margin-top:8px;align-items:center}
+
+    /* ---------- interactive / quiz ---------- */
+    .quiz{padding:14px;border-radius:10px;background:var(--glass);box-shadow:var(--shadow)}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:0;background:transparent;font-weight:700;cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white}
+    .btn.ghost{background:transparent;border:2px solid rgba(0,0,0,0.06)}
+
+    /* ---------- form ---------- */
+    form input, form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);font-family:inherit}
+    form .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+    /* ---------- helper ---------- */
+    .muted{color:var(--muted)}
+    .pill{padding:6px 10px;border-radius:999px;background:rgba(0,0,0,0.04);font-weight:700}
+    footer{margin-top:20px;padding:12px;border-radius:10px;background:linear-gradient(90deg,rgba(255,255,255,0.85),rgba(255,255,255,0.8));display:flex;justify-content:space-between;align-items:center;box-shadow:var(--shadow)}
+
+    /* ---------- toast ---------- */
+    .toast{position:fixed;right:18px;bottom:18px;background:var(--accent);color:white;padding:12px 16px;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,0.18);display:none;z-index:2000}
+
+    /* responsive */
+    @media (max-width:980px){
+      nav{display:none}
+      .hero{grid-template-columns:1fr}
+      .hero-card{order:1}
+      .hero aside{order:2}
+    }
+
+    @media (max-width:520px){
+      .logo{width:52px;height:52px;font-size:16px}
+      .hero h2{font-size:1.25rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" id="pageWrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">KM</div>
+        <div>
+          <h1>Keen Mind Educational Hub</h1>
+          <div class="sub muted">Tema — Building brighter learners</div>
+        </div>
+      </div>
+
+      <nav aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#clients">Clients</a>
+        <a href="#contact" class="cta">Get in touch</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="hero-card">
+          <div class="pill">Education • Tutoring • Community</div>
+          <h2 id="heroTitle">Helping Tema's learners grow with curiosity and confidence</h2>
+          <p class="meta">Interactive classes, career guidance, assessment tools and community programs — designed locally, delivered with heart.</p>
+
+          <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn primary" id="enrollBtn">Enroll Now</button>
+            <button class="btn ghost" id="takeQuizBtn">Try a mini-quiz</button>
+            <button class="btn" id="themeShuffle">Shuffle theme</button>
+          </div>
+
+          <div style="margin-top:14px;display:flex;gap:12px;align-items:center">
+            <div class="muted">Location</div>
+            <div class="pill">Tema, Ghana</div>
+          </div>
+        </div>
+
+        <aside class="card" aria-labelledby="quickInfo">
+          <h3 id="quickInfo">Quick info</h3>
+          <p class="muted">Open classes: Weekday evenings & Saturday mornings. Small-group tutoring and online sessions available.</p>
+          <hr style="margin:12px 0;border:none;border-top:1px solid rgba(0,0,0,0.06)">
+          <div style="display:flex;gap:8px;flex-direction:column">
+            <strong>Contact</strong>
+            <div class="muted">hello@keenmind.gh • +233 24 000 0000</div>
+            <strong style="margin-top:8px">Address</strong>
+            <div class="muted">Community 5, Tema</div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about" class="card" style="margin-bottom:12px">
+        <h2>About Us</h2>
+        <p class="muted">Keen Mind Educational Hub is a community-first learning centre based in Tema. We focus on academic tutoring, digital skills, and career-readiness for learners aged 6 to 25. Our programs combine hands-on activities, small group coaching, and assessments to help learners discover strengths and close gaps.</p>
+      </section>
+
+      <section id="services" class="card" style="margin-bottom:12px">
+        <h2>Services</h2>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+          <input type="search" id="serviceSearch" placeholder="Search services (e.g., maths, coding, exam prep)" aria-label="Search services" style="flex:1;min-width:220px;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.06)">
+          <button class="btn" id="filterAll">All</button>
+          <button class="btn" data-filter="academics">Academics</button>
+          <button class="btn" data-filter="skills">Digital Skills</button>
+          <button class="btn" data-filter="career">Career</button>
+        </div>
+
+        <div class="services" id="servicesGrid" aria-live="polite" style="margin-top:12px">
+          <!-- services injected by JS -->
+        </div>
+      </section>
+
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:16px">
+        <section class="card">
+          <h3 id="clients">Clients we've worked with</h3>
+          <p class="muted">We partner with schools, NGOs and local startups to deliver trainings and assessments.</p>
+
+          <div class="clients" style="margin-top:10px">
+            <div class="carousel" id="clientCarousel" aria-roledescription="carousel">
+              <div class="carousel-track" id="clientTrack" aria-hidden="false">
+                <!-- client boxes filled by JS -->
+              </div>
+            </div>
+            <div class="carousel-controls" aria-hidden="false">
+              <button class="btn" id="prevClient" aria-label="Previous">◀</button>
+              <button class="btn" id="nextClient" aria-label="Next">▶</button>
+            </div>
+          </div>
+        </section>
+
+        <aside class="quiz card" id="interactivePanel">
+          <h3>Interactive learning</h3>
+          <p class="muted">Mini-quiz and tools to engage learners.</p>
+
+          <div id="quizArea" style="margin-top:12px">
+            <p><strong>Ready for a quick question?</strong></p>
+            <button class="btn primary" id="startQuiz">Start Quiz</button>
+          </div>
+
+          <hr style="margin:12px 0;border:none;border-top:1px solid rgba(0,0,0,0.06)">
+          <div>
+            <strong>Tools</strong>
+            <ul class="muted" style="margin:6px 0 0 18px">
+              <li>Progress tracker</li>
+              <li>Printable worksheets</li>
+              <li>Assessment reports</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+      <section id="contact" class="card" style="margin-top:14px">
+        <h2>Get in touch</h2>
+        <form id="contactForm" novalidate>
+          <div class="two" style="margin-top:8px">
+            <input type="text" id="name" placeholder="Your name" required>
+            <input type="email" id="email" placeholder="Email" required>
+          </div>
+          <textarea id="message" rows="4" placeholder="How can we help?" style="margin-top:8px"></textarea>
+          <div style="margin-top:8px">
+            <button class="btn primary" type="submit">Send message</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        <strong>Keen Mind Educational Hub</strong>
+        <div class="muted" style="font-size:0.9rem">Tema • Community learning for curious minds</div>
+      </div>
+      <div class="muted">© <span id="year"></span> Keen Mind</div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <script>
+    /* ------------------ Utilities ------------------ */
+    function rand(min, max){ return Math.floor(Math.random() * (max - min + 1)) + min }
+    function clamp(v, a, b){ return Math.max(a, Math.min(b, v)) }
+
+    /* ------------------ Dynamic theme & background generator ------------------ */
+    function hslToCss(h,s,l){ return 'hsl(' + h + ',' + s + '%,' + l + '%)'; }
+
+    function generateRedTheme(){
+      // Choose a warm red hue in H (0..20 or 340..360 wrap)
+      const hue = (Math.random() < 0.6) ? rand(0, 12) : rand(350, 360);
+      const accentLightness = rand(45, 62); // lighter accent
+      const accentDarkLight = clamp(accentLightness - rand(12, 22), 20, 45);
+      const accent2Light = clamp(accentLightness + rand(6, 14), 55, 80);
+
+      const accent = hslToCss(hue, rand(65,85), accentDarkLight);
+      const accent2 = hslToCss(hue, rand(70,95), accent2Light);
+
+      // soft background tints
+      const bgHue = (hue + rand(10,40)) % 360;
+      const bg1 = hslToCss(bgHue, rand(40,60), rand(96,99)); // very light pink/peach
+      const bg2 = hslToCss(bgHue, rand(30,50), rand(90,95));
+
+      // Construct SVG pattern — diagonal lines + circles — encoded as data URI
+      const svg = `
+        <svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'>
+          <defs>
+            <linearGradient id='g' x1='0' x2='1' y1='0' y2='1'>
+              <stop offset='0' stop-color='${bg1}' stop-opacity='0.9'/>
+              <stop offset='1' stop-color='${bg2}' stop-opacity='0.9'/>
+            </linearGradient>
+            <pattern id='p' patternUnits='userSpaceOnUse' width='120' height='120' patternTransform='rotate(25)'>
+              <rect width='120' height='120' fill='none' />
+              <path d='M0 60 L120 60' stroke='${accent}' stroke-opacity='0.06' stroke-width='18'/>
+              <path d='M0 30 L120 30' stroke='${accent2}' stroke-opacity='0.03' stroke-width='6'/>
+            </pattern>
+          </defs>
+          <rect width='100%' height='100%' fill='url(#g)' />
+          <rect width='100%' height='100%' fill='url(#p)' />
+          <!-- circles -->
+          <circle cx='680' cy='80' r='60' fill='${accent}' fill-opacity='0.06' />
+          <circle cx='740' cy='520' r='90' fill='${accent2}' fill-opacity='0.04' />
+          <circle cx='90' cy='460' r='50' fill='${accent}' fill-opacity='0.03' />
+        </svg>`;
+
+      const svgUri = "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+
+      // Update CSS variables
+      document.documentElement.style.setProperty('--accent', accent);
+      document.documentElement.style.setProperty('--accent-2', accent2);
+      document.documentElement.style.setProperty('--bg-layer-1', `linear-gradient(135deg, ${bg1}, ${bg2})`);
+      document.documentElement.style.setProperty('--bg-layer-2', `url("${svgUri}")`);
+      document.documentElement.style.setProperty('--card-bg', 'rgba(255,255,255,0.92)');
+      document.documentElement.style.setProperty('--glass', 'rgba(255,255,255,0.7)');
+      // Choose readable text color based on lightness
+      const text = (accentDarkLight <= 35) ? '#2b0a0a' : '#3b1a1a';
+      document.documentElement.style.setProperty('--text', text);
+      document.documentElement.style.setProperty('--muted', 'rgba(0,0,0,0.45)');
+    }
+
+    /* ------------------ Services data & rendering ------------------ */
+    const SERVICES = [
+      { id:1, title:'Primary Maths Tutoring', category:'academics', desc:'Foundations, arithmetic and problem-solving for ages 6–12.'},
+      { id:2, title:'Secondary Science', category:'academics', desc:'Physics, Chemistry and Biology tutoring with experiments.'},
+      { id:3, title:'Exam Prep — BECE/SHS', category:'academics', desc:'Focused revision, past-paper practice and timed mocks.'},
+      { id:4, title:'Coding for Beginners', category:'skills', desc:'Intro to programming: Scratch, Python fundamentals and projects.'},
+      { id:5, title:'Digital Skills Bootcamp', category:'skills', desc:'Basic web dev, spreadsheets and digital communication.'},
+      { id:6, title:'Graphic Design Club', category:'skills', desc:'Visual communication using free tools; portfolio support.'},
+      { id:7, title:'Career Guidance', category:'career', desc:'Counselling, CV building and interview coaching.'},
+      { id:8, title:'Entrepreneurship for Teens', category:'career', desc:'Startup basics, ideation and simple business modelling.'},
+      { id:9, title:'Teacher Training Workshops', category:'career', desc:'Pedagogy, classroom management and assessment design.'}
+    ];
+
+    function renderServices(filter, query){
+      const grid = document.getElementById('servicesGrid');
+      grid.innerHTML = '';
+      const q = (query || '').trim().toLowerCase();
+      const filtered = SERVICES.filter(s => {
+        const matchesFilter = !filter || filter === 'all' ? true : s.category === filter;
+        const matchesQuery = !q ? true : (s.title + ' ' + s.desc).toLowerCase().includes(q);
+        return matchesFilter && matchesQuery;
+      });
+
+      if (filtered.length === 0){
+        const div = document.createElement('div');
+        div.className = 'service';
+        div.innerHTML = '<h3>No matching services</h3><p class="muted">Try clearing filters or searching different keywords.</p>';
+        grid.appendChild(div);
+        return;
+      }
+
+      filtered.forEach(s => {
+        const el = document.createElement('article');
+        el.className = 'service';
+        el.setAttribute('tabindex', 0);
+        el.innerHTML = `<div><h3>${s.title}</h3><p class="muted">${s.desc}</p></div>
+                        <div style="display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:10px">
+                          <div class="pill" style="background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white">${s.category}</div>
+                          <button class="btn" data-service-id="${s.id}">Learn more</button>
+                        </div>`;
+        grid.appendChild(el);
+      });
+    }
+
+    /* ------------------ Clients carousel ------------------ */
+    const CLIENTS = [
+      'Tema Municipal School', 'BrightStart NGO', 'Local Startup Co.', 'Community Library', 'Ghana Ed Trust',
+      'Junior Achievers', 'STEM for Kids', 'Youth Skills Center'
+    ];
+
+    function renderClients(){
+      const track = document.getElementById('clientTrack');
+      track.innerHTML = '';
+      CLIENTS.forEach((c, i) => {
+        const div = document.createElement('div');
+        div.className = 'client';
+        div.style.background = `linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.7))`;
+        div.innerHTML = `<div style="text-align:center;padding:8px"><div style="font-size:0.95rem">${c}</div></div>`;
+        track.appendChild(div);
+      });
+    }
+
+    let clientIndex = 0;
+    function updateCarousel(){
+      const track = document.getElementById('clientTrack');
+      const child = track.children[0];
+      if(!child) return;
+      const cardWidth = child.getBoundingClientRect().width + 12; // gap
+      const visible = Math.floor(document.getElementById('clientCarousel').getBoundingClientRect().width / cardWidth) || 1;
+      // ensure index in range
+      clientIndex = clamp(clientIndex, 0, Math.max(0, CLIENTS.length - visible));
+      track.style.transform = `translateX(${ -clientIndex * cardWidth }px)`;
+    }
+
+    /* ------------------ Mini quiz ------------------ */
+    const QUIZ = [
+      {
+        q: "Which is the largest planet in our solar system?",
+        choices: ["Earth", "Jupiter", "Mars", "Saturn"],
+        a: 1
+      },
+      {
+        q: "What is 12 × 8?",
+        choices: ["96", "86", "98", "108"],
+        a: 0
+      },
+      {
+        q: "Which of these is a programming language?",
+        choices: ["BananaScript", "Python", "HTMLish", "WordDoc"],
+        a: 1
+      }
+    ];
+
+    function startQuiz(){
+      const area = document.getElementById('quizArea');
+      let idx = 0;
+      let score = 0;
+
+      function showQuestion(){
+        const data = QUIZ[idx];
+        area.innerHTML = '';
+        const qEl = document.createElement('div');
+        qEl.innerHTML = `<p><strong>Q${idx+1}.</strong> ${data.q}</p>`;
+        const ul = document.createElement('div');
+        ul.style.display = 'grid';
+        ul.style.gap = '8px';
+        data.choices.forEach((c, i) => {
+          const btn = document.createElement('button');
+          btn.className = 'btn';
+          btn.textContent = c;
+          btn.onclick = () => {
+            if(i === data.a) {
+              score++;
+              showToast('Correct! ✅', 1000);
+            } else {
+              showToast('Not quite — the correct answer was: ' + data.choices[data.a], 1400);
+            }
+            idx++;
+            if(idx < QUIZ.length) {
+              setTimeout(showQuestion, 600);
+            } else {
+              setTimeout(() => showResult(), 600);
+            }
+          };
+          ul.appendChild(btn);
+        });
+        area.appendChild(qEl);
+        area.appendChild(ul);
+      }
+
+      function showResult(){
+        area.innerHTML = `<p><strong>Quiz finished — score: ${score} / ${QUIZ.length}</strong></p>
+                          <p class="muted">Well done! Try other mini-activities or enroll for full courses.</p>
+                          <div style="margin-top:8px"><button class="btn primary" id="retake">Retake</button> <button class="btn" id="closeQuiz">Close</button></div>`;
+        document.getElementById('retake').onclick = () => { idx=0; score=0; showQuestion(); };
+        document.getElementById('closeQuiz').onclick = () => {
+          area.innerHTML = `<p><strong>Ready for a quick question?</strong></p>
+                            <button class="btn primary" id="startQuiz">Start Quiz</button>`;
+          document.getElementById('startQuiz').onclick = startQuiz;
+        };
+      }
+
+      showQuestion();
+    }
+
+    /* ------------------ Toast ------------------ */
+    let toastTimer = null;
+    function showToast(msg, ms = 2200){
+      const t = document.getElementById('toast');
+      if(toastTimer) { clearTimeout(toastTimer); toastTimer = null; }
+      t.textContent = msg;
+      t.style.display = 'block';
+      toastTimer = setTimeout(()=>{ t.style.display = 'none'; toastTimer = null; }, ms);
+    }
+
+    /* ------------------ Contact form handling ------------------ */
+    document.addEventListener('DOMContentLoaded', () => {
+      // init year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // set theme
+      generateRedTheme();
+
+      // render dynamic content
+      renderServices('all','');
+      renderClients();
+      updateCarousel();
+
+      // responsive carousel adjustment
+      window.addEventListener('resize', () => {
+        updateCarousel();
+      });
+
+      // services search + filter
+      document.getElementById('serviceSearch').addEventListener('input', (e) => {
+        renderServices('all', e.target.value);
+      });
+      document.querySelectorAll('[data-filter]').forEach(btn => {
+        btn.addEventListener('click', (ev) => {
+          const f = ev.currentTarget.getAttribute('data-filter');
+          renderServices(f, document.getElementById('serviceSearch').value);
+        });
+      });
+      document.getElementById('filterAll').addEventListener('click', () => {
+        renderServices('all', document.getElementById('serviceSearch').value);
+      });
+
+      // services learn more click (event delegation)
+      document.getElementById('servicesGrid').addEventListener('click', (ev) => {
+        const btn = ev.target.closest('button[data-service-id]');
+        if(!btn) return;
+        const id = Number(btn.dataset.serviceId);
+        const s = SERVICES.find(x => x.id === id);
+        if(s){
+          showToast(`More about "${s.title}": ${s.desc}`, 2600);
+        }
+      });
+
+      // carousel controls
+      document.getElementById('prevClient').addEventListener('click', () => {
+        clientIndex = clientIndex - 1;
+        updateCarousel();
+      });
+      document.getElementById('nextClient').addEventListener('click', () => {
+        clientIndex = clientIndex + 1;
+        updateCarousel();
+      });
+
+      // interactive quiz opening
+      document.getElementById('startQuiz').addEventListener('click', startQuiz);
+      document.getElementById('takeQuizBtn').addEventListener('click', () => {
+        // scroll to interactive panel and start
+        document.getElementById('interactivePanel').scrollIntoView({behavior:'smooth', block:'center'});
+        setTimeout(() => {
+          const start = document.getElementById('startQuiz');
+          if(start) start.click();
+        }, 600);
+      });
+
+      // enroll button (example)
+      document.getElementById('enrollBtn').addEventListener('click', () => {
+        showToast('Thanks — we will contact you about enrollment shortly!', 2200);
+      });
+
+      // shuffle theme
+      document.getElementById('themeShuffle').addEventListener('click', () => {
+        generateRedTheme();
+        showToast('Theme refreshed 🎨', 1200);
+      });
+
+      // contact form
+      document.getElementById('contactForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        if(!name || !email){
+          showToast('Please enter your name and email', 1600);
+          return;
+        }
+        // fake send...
+        showToast('Message sent — thanks! We will be in touch.', 2000);
+        e.target.reset();
+      });
+
+      // small accessibility: keyboard left/right for carousel
+      document.addEventListener('keydown', (ev) => {
+        if(ev.key === 'ArrowLeft'){ clientIndex = clientIndex - 1; updateCarousel(); }
+        if(ev.key === 'ArrowRight'){ clientIndex = clientIndex + 1; updateCarousel(); }
+      });
+
+      // ensure carousel index bounds after initial paint
+      setTimeout(updateCarousel, 50);
+    });
+  </script>
+</body>
+</html>
