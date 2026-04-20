@@ -171,7 +171,7 @@ const AboutPage = () => {
         Our Story
       </span>
       <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white drop-shadow-2xl">
-        About Ghana Luxury Apartments
+        About Rash Apartments
       </h1>
       <p className="text-xl lg:text-2xl text-gray-200 max-w-4xl mx-auto leading-relaxed drop-shadow-lg">
         Redefining premium accommodation in Accra with exceptional service, 
