@@ -1,0 +1,70 @@
+{
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Akua Mensah",
+      "location": "London, UK",
+      "rating": 5,
+      "comment": "Absolutely stunning apartment! The views of Accra are breathtaking, and the amenities exceeded our expectations. The staff was incredibly helpful and made our stay memorable. The location is perfect - close to everything yet peaceful and secure.",
+      "avatar": null,
+      "stayDate": "December 2024",
+      "apartment": "Ocean View Suite",
+      "verified": true
+    },
+    {
+      "id": 2,
+      "name": "Kwame Asante",
+      "location": "New York, USA",
+      "rating": 5,
+      "comment": "Best accommodation experience in Ghana. The apartment was spotless, modern, and perfectly located. Will definitely be my go-to place whenever I'm in Accra. The concierge service is exceptional - they helped arrange everything from airport transfers to local tours.",
+      "avatar": null,
+      "stayDate": "January 2025",
+      "apartment": "Executive Apartment",
+      "verified": true
+    },
+    {
+      "id": 3,
+      "name": "Sarah & John Thompson",
+      "location": "Toronto, Canada",
+      "rating": 4,
+      "comment": "Our family had a wonderful time here. The apartment was spacious and child-friendly with all the amenities we needed. Great location near restaurants and shops. The staff went above and beyond to ensure our children were comfortable. Highly recommended for families!",
+      "avatar": null,
+      "stayDate": "November 2024",
+      "apartment": "Family Garden Apartment",
+      "verified": true
+    },
+    {
+      "id": 4,
+      "name": "Nana Yaa Boateng",
+      "location": "Accra, Ghana",
+      "rating": 5,
+      "comment": "Perfect staycation spot! The infinity pool and fitness center are world-class. It's amazing to find such quality accommodation right here in Accra. The views from the rooftop are spectacular, especially during sunset. Already planning our next visit!",
+      "avatar": null,
+      "stayDate": "December 2024",
+      "apartment": "Penthouse Suite",
+      "verified": true
+    },
+    {
+      "id": 5,
+      "name": "Michael Osei",
+      "location": "Amsterdam, Netherlands",
+      "rating": 5,
+      "comment": "Exceptional service from start to finish. The concierge helped arrange everything from airport pickup to restaurant reservations. The apartment itself was immaculate with high-end finishes and thoughtful touches throughout. Truly five-star experience!",
+      "avatar": null,
+      "stayDate": "January 2025",
+      "apartment": "Luxury Studio",
+      "verified": true
+    },
+    {
+      "id": 6,
+      "name": "Grace Addo",
+      "location": "Lagos, Nigeria",
+      "rating": 5,
+      "comment": "This place exceeded all expectations! The location is perfect for business travelers, and the WiFi is incredibly fast. The apartment felt like a home away from home. The security is top-notch, which gave me peace of mind throughout my stay.",
+      "avatar": null,
+      "stayDate": "October 2024",
+      "apartment": "Business Suite",
+      "verified": true
+    }
+  ]
+}

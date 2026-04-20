@@ -1,0 +1,160 @@
+{
+  "apartments": [
+    {
+      "id": "apt001",
+      "name": "Luxury Ocean View Suite",
+      "type": "Penthouse",
+      "location": "Labadi Beach, Accra",
+      "price": 350,
+      "currency": "GHS",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "maxGuests": 6,
+      "size": 120,
+      "sizeUnit": "m²",
+      "description": "Stunning ocean view apartment with modern amenities and 24/7 security. Features a private balcony overlooking the Atlantic Ocean.",
+      "amenities": ["wifi", "ac", "kitchen", "parking", "pool", "gym", "tv", "balcony"],
+      "images": [
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "availability": {
+        "status": "available",
+        "nextAvailable": "2024-01-15",
+        "bookedDates": []
+      },
+      "rating": 4.8,
+      "reviews": 124,
+      "featured": true
+    },
+    {
+      "id": "apt002",
+      "name": "City Center Executive",
+      "type": "Executive",
+      "location": "Airport Residential Area, Accra",
+      "price": 280,
+      "currency": "GHS",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxGuests": 4,
+      "size": 85,
+      "sizeUnit": "m²",
+      "description": "Perfect for business travelers, close to Kotoka International Airport with high-speed internet and workspace.",
+      "amenities": ["wifi", "ac", "kitchen", "parking", "gym", "tv", "laundry"],
+      "images": [
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "availability": {
+        "status": "available",
+        "nextAvailable": "2024-01-10",
+        "bookedDates": []
+      },
+      "rating": 4.6,
+      "reviews": 89,
+      "featured": true
+    },
+    {
+      "id": "apt003",
+      "name": "Family Garden Apartment",
+      "type": "Family",
+      "location": "East Legon, Accra",
+      "price": 220,
+      "currency": "GHS",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "maxGuests": 6,
+      "size": 110,
+      "sizeUnit": "m²",
+      "description": "Spacious family apartment with private garden and children's play area. Perfect for family vacations.",
+      "amenities": ["wifi", "ac", "kitchen", "parking", "tv", "balcony", "laundry", "pets"],
+      "images": [
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "availability": {
+        "status": "booked",
+        "nextAvailable": "2024-01-20",
+        "bookedDates": ["2024-01-05", "2024-01-06", "2024-01-07"]
+      },
+      "rating": 4.9,
+      "reviews": 56,
+      "featured": true
+    },
+    {
+      "id": "apt004",
+      "name": "Modern Studio Loft",
+      "type": "Studio",
+      "location": "Osu, Accra",
+      "price": 150,
+      "currency": "GHS",
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "maxGuests": 2,
+      "size": 55,
+      "sizeUnit": "m²",
+      "description": "Stylish studio apartment in the heart of Osu, close to restaurants, bars, and shopping.",
+      "amenities": ["wifi", "ac", "kitchen", "tv", "laundry"],
+      "images": [
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "availability": {
+        "status": "available",
+        "nextAvailable": "2024-01-12",
+        "bookedDates": []
+      },
+      "rating": 4.7,
+      "reviews": 203,
+      "featured": true
+    },
+    {
+      "id": "apt005",
+      "name": "Premium Business Suite",
+      "type": "Business",
+      "location": "Cantonments, Accra",
+      "price": 310,
+      "currency": "GHS",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxGuests": 4,
+      "size": 95,
+      "sizeUnit": "m²",
+      "description": "Elegant business suite with dedicated workspace, high-speed internet, and premium furnishings.",
+      "amenities": ["wifi", "ac", "kitchen", "parking", "gym", "tv", "pool"],
+      "images": [
+        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "availability": {
+        "status": "available",
+        "nextAvailable": "2024-01-08",
+        "bookedDates": []
+      },
+      "rating": 4.8,
+      "reviews": 67,
+      "featured": true
+    },
+    {
+      "id": "apt006",
+      "name": "Rooftop Terrace Apartment",
+      "type": "Luxury",
+      "location": "Labone, Accra",
+      "price": 420,
+      "currency": "GHS",
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "maxGuests": 8,
+      "size": 150,
+      "sizeUnit": "m²",
+      "description": "Spectacular penthouse with private rooftop terrace, panoramic city views, and luxury finishes throughout.",
+      "amenities": ["wifi", "ac", "kitchen", "parking", "pool", "gym", "tv", "balcony", "laundry"],
+      "images": [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "availability": {
+        "status": "available",
+        "nextAvailable": "2024-01-18",
+        "bookedDates": []
+      },
+      "rating": 5.0,
+      "reviews": 42,
+      "featured": true
+    }
+  ]
+}
