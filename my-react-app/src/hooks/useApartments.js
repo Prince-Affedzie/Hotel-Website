@@ -1,11 +1,11 @@
-import { useState, useEffect, } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import apartmentsData from '../data/apartments.json';
 
 const useApartments = () => {
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [aptLoading,setaptLoading] = useState(false);
+  const [aptLoading, setAptLoading] = useState(false);
 
   useEffect(() => {
     const fetchApartments = async () => {
@@ -23,15 +23,16 @@ const useApartments = () => {
     fetchApartments();
   }, []);
 
-  const getApartmentById = (id) => {
+  // Memoize getApartmentById to prevent recreation on every render
+  const getApartmentById = useCallback((id) => {
     return apartments.find(apt => apt.id === id);
-  };
+  }, [apartments]); // Only recreate when apartments changes
 
-  const getFeaturedApartments = () => {
+  const getFeaturedApartments = useCallback(() => {
     return apartments.filter(apt => apt.featured);
-  };
+  }, [apartments]);
 
-  const filterApartments = (filters) => {
+  const filterApartments = useCallback((filters) => {
     return apartments.filter(apt => {
       // Price filter
       if (filters.priceRange) {
@@ -60,9 +61,9 @@ const useApartments = () => {
       
       return true;
     });
-  };
+  }, [apartments]);
 
-  const checkAvailability = (apartmentId, startDate, endDate) => {
+  const checkAvailability = useCallback((apartmentId, startDate, endDate) => {
     const apartment = getApartmentById(apartmentId);
     if (!apartment) return false;
     
@@ -70,7 +71,7 @@ const useApartments = () => {
     const requestedDates = getDatesInRange(startDate, endDate);
     
     return !requestedDates.some(date => bookedDates.includes(date));
-  };
+  }, [getApartmentById]);
 
   const getDatesInRange = (start, end) => {
     const dates = [];
@@ -89,6 +90,7 @@ const useApartments = () => {
     apartments,
     loading,
     error,
+    aptLoading,
     getApartmentById,
     getFeaturedApartments,
     filterApartments,

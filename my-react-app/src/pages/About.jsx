@@ -145,44 +145,48 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-ghana-green to-green-800 text-white py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-black/20" />
-        
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl" />
-        </div>
+<section className="relative py-32 overflow-hidden bg-cover bg-center bg-no-repeat"
+  style={{
+    backgroundImage: `url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`,
+  }}
+>
+  {/* Dark Overlay for text readability */}
+  <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/70" />
+  
+  {/* Animated Background Elements */}
+  <div className="absolute inset-0">
+    <div className="absolute top-20 left-10 w-96 h-96 bg-ghana-gold/10 rounded-full blur-3xl animate-pulse" />
+    <div className="absolute bottom-20 right-10 w-96 h-96 bg-ghana-green/10 rounded-full blur-3xl animate-pulse delay-1000" />
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl" />
+  </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <span className="inline-block px-4 py-1 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-semibold mb-6">
-              Our Story
-            </span>
-            <h1 className="text-5xl lg:text-7xl font-bold mb-6">
-              About Ghana Luxury Apartments
-            </h1>
-            <p className="text-xl lg:text-2xl text-gray-200 max-w-4xl mx-auto leading-relaxed">
-              Redefining premium accommodation in Accra with exceptional service, 
-              luxurious properties, and authentic Ghanaian hospitality.
-            </p>
-          </motion.div>
-        </div>
+  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="text-center"
+    >
+      <span className="inline-block px-4 py-1 bg-ghana-gold/20 backdrop-blur-sm text-ghana-gold rounded-full text-sm font-semibold mb-6">
+        Our Story
+      </span>
+      <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white drop-shadow-2xl">
+        About Ghana Luxury Apartments
+      </h1>
+      <p className="text-xl lg:text-2xl text-gray-200 max-w-4xl mx-auto leading-relaxed drop-shadow-lg">
+        Redefining premium accommodation in Accra with exceptional service, 
+        luxurious properties, and authentic Ghanaian hospitality.
+      </p>
+    </motion.div>
+  </div>
 
-        {/* Wave Divider */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 120L60 105C120 90 240 60 360 50C480 40 600 50 720 60C840 70 960 80 1080 75C1200 70 1320 50 1380 40L1440 30V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#F9FAFB"/>
-          </svg>
-        </div>
-      </section>
-
+  {/* Wave Divider */}
+  <div className="absolute bottom-0 left-0 right-0">
+    <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 120L60 105C120 90 240 60 360 50C480 40 600 50 720 60C840 70 960 80 1080 75C1200 70 1320 50 1380 40L1440 30V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#F9FAFB"/>
+    </svg>
+  </div>
+</section>
       {/* Our Story Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
