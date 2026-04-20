@@ -1,22 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes, FaPhone, FaWhatsapp, FaMapMarkerAlt } from 'react-icons/fa';
 import companyInfo from '../../data/companyInfo.json';
 
+// Custom hook to detect screen size
+const useMediaQuery = (query) => {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    if (media.matches !== matches) {
+      setMatches(media.matches);
+    }
+    
+    const listener = (event) => setMatches(event.matches);
+    media.addEventListener('change', listener);
+    
+    return () => media.removeEventListener('change', listener);
+  }, [matches, query]);
+
+  return matches;
+};
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  
+  // Use custom hook to check if screen is large (1024px and above)
+  const isLargeScreen = useMediaQuery('(min-width: 1024px)');
+
+  // Close mobile menu when screen size changes to desktop
+  useEffect(() => {
+    if (isLargeScreen) {
+      setIsOpen(false);
+    }
+  }, [isLargeScreen]);
 
   const navLinks = [
     { path: '/', label: 'Home' },
     { path: '/apartments', label: 'Apartments' },
     { path: '/gallery', label: 'Gallery' },
-    { path: '/about', label: 'About ' },
+    { path: '/about', label: 'About' },
     { path: '/contact', label: 'Contact' }
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white shadow-lg">
+    <nav className="sticky top-0 z-50 bg-white shadow-lg overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
@@ -29,13 +58,28 @@ const Navigation = () => {
                 <h1 className="text-xl font-bold text-gray-900">
                   {companyInfo.company.name}
                 </h1>
-                {/*<p className="text-xs text-gray-600">Luxury Living in Accra</p>*/}
               </div>
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          {/* Desktop Navigation - Using custom CSS class instead of Tailwind responsive */}
+          <div className={`desktop-nav ${isLargeScreen ? 'active' : ''}`}>
+            <style jsx>{`
+              .desktop-nav {
+                display: none;
+                align-items: center;
+              }
+              .desktop-nav.active {
+                display: flex;
+              }
+              @media (min-width: 1024px) {
+                .desktop-nav {
+                  display: flex;
+                  align-items: center;
+                }
+              }
+            `}</style>
+            
             <div className="flex space-x-6">
               {navLinks.map((link) => (
                 <Link
@@ -56,7 +100,7 @@ const Navigation = () => {
             </div>
 
             {/* Contact Info */}
-            <div className="flex items-center space-x-4 border-l border-gray-200 pl-6">
+            <div className="flex items-center space-x-4 border-l border-gray-200 pl-6 ml-6">
               <a
                 href={`tel:${companyInfo.company.phone}`}
                 className="flex items-center space-x-2 text-gray-600 hover:text-ghana-green transition-colors"
@@ -79,7 +123,7 @@ const Navigation = () => {
             {/* Book Now Button */}
             <Link
               to="/apartments"
-              className="bg-ghana-red text-white px-4 py-2.5 rounded-lg font-semibold text-sm hover:bg-red-700 transform hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg"
+              className="bg-ghana-red text-white px-4 py-2.5 rounded-lg font-semibold text-sm hover:bg-red-700 transform hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg ml-6"
             >
               Book Now
             </Link>
@@ -90,6 +134,7 @@ const Navigation = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-gray-700 hover:text-ghana-green focus:outline-none transition-colors"
+              aria-label="Toggle menu"
             >
               {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
             </button>
@@ -98,9 +143,13 @@ const Navigation = () => {
 
         {/* Mobile Navigation Menu */}
         <div
-          className={`lg:hidden fixed inset-x-0 top-20 bg-white shadow-lg transition-all duration-300 ease-in-out ${
-            isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+          className={`lg:hidden fixed inset-x-0 top-20 bg-white shadow-lg transition-all duration-300 ease-in-out z-50 ${
+            isOpen ? 'max-h-screen opacity-100 visible' : 'max-h-0 opacity-0 invisible'
           }`}
+          style={{
+            transitionProperty: 'max-height, opacity, visibility',
+            overflowY: 'auto'
+          }}
         >
           <div className="px-4 py-6 space-y-4">
             {navLinks.map((link) => (

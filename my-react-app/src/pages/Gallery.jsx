@@ -267,41 +267,58 @@ const GalleryPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-ghana-green to-green-800 text-white py-20">
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <h1 className="text-4xl lg:text-6xl font-bold mb-4">
-              Photo Gallery
-            </h1>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-              Explore our collection of stunning apartments, interiors, and amenities
-            </p>
-          </motion.div>
+      <section 
+  className="relative py-20 bg-cover bg-center bg-no-repeat"
+  style={{
+    backgroundImage: `url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`
+  }}
+>
+  {/* Dark Overlay */}
+  <div className="absolute inset-0 bg-black/60" />
+  
+  {/* Subtle pattern overlay for texture */}
+  <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30" />
+  
+  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+    >
+      {/* Optional: Gallery badge */}
+      <div className="inline-block mb-4">
+        <span className="bg-ghana-yellow/20 backdrop-blur-sm text-ghana-yellow px-4 py-1 rounded-full text-sm font-semibold">
+          Our Collection
+        </span>
+      </div>
+      
+      <h1 className="text-4xl lg:text-6xl font-bold mb-4 text-white drop-shadow-lg">
+        Photo Gallery
+      </h1>
+      <p className="text-xl text-gray-200 max-w-3xl mx-auto drop-shadow">
+        Explore our collection of stunning apartments, interiors, and amenities
+      </p>
+    </motion.div>
 
-          {/* Search Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="max-w-2xl mx-auto mt-8"
-          >
-            <div className="relative">
-              <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search photos by title, location, or description..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-ghana-yellow shadow-lg"
-              />
-            </div>
-          </motion.div>
-        </div>
-      </section>
+    {/* Search Bar */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+      className="max-w-2xl mx-auto mt-8"
+    >
+      <div className="relative">
+        <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl z-10" />
+        <input
+          type="text"
+          placeholder="Search photos by title, location, or description..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full pl-12 pr-4 py-4 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-ghana-yellow shadow-lg bg-white/95 backdrop-blur-sm"
+        />
+      </div>
+    </motion.div>
+  </div>
+</section>
 
       {/* Category Filters */}
       <section className="sticky top-20 z-30 bg-white border-b shadow-sm">

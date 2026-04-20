@@ -51,7 +51,7 @@ import companyInfo from '../data/companyInfo.json';
 const BookingPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { getApartmentById, checkAvailability,aptLoading } = useApartments();
+  const { getApartmentById, checkAvailability, } = useApartments();
   const { state, dispatch } = useBooking();
   
   const [apartment, setApartment] = useState(null);
@@ -152,7 +152,7 @@ const BookingPage = () => {
     };
     
     loadApartment();
-  }, [id]);
+  }, [getApartmentById]);
 
   useEffect(() => {
     // Update total guests when adults/children change

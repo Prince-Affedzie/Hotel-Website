@@ -6,7 +6,7 @@ import Testimonials from '../components/home/Testimonials';
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
        {/*<h1>Home Page</h1>;*/} 
       <HeroSection />
       <FeaturedApartments />

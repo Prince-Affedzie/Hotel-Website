@@ -72,44 +72,60 @@ const ApartmentsPage = () => {
   const locations = [...new Set(apartments.map(apt => apt.location))];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-ghana-green to-green-800 text-white py-20">
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center"
-          >
-            <h1 className="text-4xl lg:text-6xl font-bold mb-4">
-              Find Your Perfect Apartment
-            </h1>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-              Discover our collection of premium apartments in Accra's most desirable locations
-            </p>
-          </motion.div>
+      {/* Hero Section */}
+<section className="relative py-20 bg-cover bg-center bg-no-repeat"
+  style={{
+    backgroundImage: `url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`,
+  }}
+>
+  {/* Dark Overlay - Multiple layers for better depth */}
+  <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70" />
+  
+  {/* Subtle pattern overlay for texture */}
+<div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30" />  
+  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="text-center"
+    >
+      {/* Optional: Small badge */}
+      <div className="inline-block mb-4">
+        <span className="bg-ghana-yellow/20 backdrop-blur-sm text-ghana-yellow px-4 py-1 rounded-full text-sm font-semibold">
+          Premium Apartments
+        </span>
+      </div>
+      
+      <h1 className="text-4xl lg:text-6xl font-bold mb-4 text-white drop-shadow-lg">
+        Find Your Perfect Apartment
+      </h1>
+      <p className="text-xl text-gray-200 max-w-3xl mx-auto drop-shadow">
+        Discover our collection of premium apartments in Accra's most desirable locations
+      </p>
+    </motion.div>
 
-          {/* Search Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="max-w-3xl mx-auto mt-8"
-          >
-            <div className="relative">
-              <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl" />
-              <input
-                type="text"
-                placeholder="Search by name, location, or description..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-ghana-yellow shadow-lg"
-              />
-            </div>
-          </motion.div>
-        </div>
-      </section>
+    {/* Search Bar */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+      className="max-w-3xl mx-auto mt-8"
+    >
+      <div className="relative">
+        <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl z-10" />
+        <input
+          type="text"
+          placeholder="Search by name, location, or description..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full pl-12 pr-4 py-4 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-ghana-yellow shadow-2xl bg-white/95 backdrop-blur-sm"
+        />
+      </div>
+    </motion.div>
+  </div>
+</section>
 
       {/* Main Content */}
       <section className="py-12">
